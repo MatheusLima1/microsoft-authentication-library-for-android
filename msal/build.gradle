@@ -143,18 +143,16 @@ dependencies {
     // Set this dependency to use JUnit 4 rules
     androidTestImplementation "androidx.test:rules:$rootProject.rulesVersion"
     androidTestImplementation "org.mockito:mockito-android:$rootProject.ext.mockitoAndroidVersion"
-    // 'local' flavor dependencies
-//    localApi(project(":common")) {
-//        transitive = false
-//    }
-    implementation project(path: ':common')
 
-//    snapshotApi(group: 'com.microsoft.identity', name: 'common', version: '2.0.7-SNAPSHOT', changing: true)
+    distImplementation(project(":common")) {
+        transitive = false
+    }
 //
 //    distApi("com.microsoft.identity:common:2.0.8") {
 //        transitive = false
 //    }
-//    implementation 'com.microsoft.identity:common:2.0.7'
+
+    snapshotApi(group: 'com.microsoft.identity', name: 'common', version: '2.0.8-SNAPSHOT', changing: true)
 }
 
 def configDir = new File(buildscript.sourceFile.parentFile.parentFile, 'config')
